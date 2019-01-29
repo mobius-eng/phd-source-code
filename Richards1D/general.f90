@@ -1,0 +1,29 @@
+MODULE GENERAL
+    
+    IMPLICIT NONE
+    
+    ! DOUBLE PRECISION
+    INTEGER, PARAMETER :: DP = KIND(1.0D0)
+    
+    CONTAINS
+    
+    PURE SUBROUTINE LINSPACE(X0, XEND, NX, XOUT)
+    
+    REAL(DP), INTENT(IN) :: X0, XEND
+    INTEGER, INTENT(IN) :: NX
+    REAL(DP), DIMENSION(:), INTENT(OUT) :: XOUT
+    
+    INTEGER :: I
+    REAL(DP) :: DX
+    
+    DX = (XEND - X0) / NX
+    
+    XOUT(1) = X0
+    DO I=1,NX-2
+        XOUT(I+1) = XOUT(I) + DX
+    END DO    
+    XOUT(NX) = XEND
+    
+    END SUBROUTINE LINSPACE
+    
+END MODULE GENERAL
